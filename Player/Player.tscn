@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk1qrbdqpsg6e"]
+
+[ext_resource type="Texture2D" uid="uid://s13531ow8230" path="res://icon.svg" id="1_2y6sm"]
+[ext_resource type="Script" path="res://Player/Player.cs" id="1_qihaq"]
+[ext_resource type="PackedScene" uid="uid://dtheldak1tuln" path="res://Component/VelocityComponent.tscn" id="3_amftn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7flh7"]
+size = Vector2(150, 150)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_velocityComponent")]
+motion_mode = 1
+script = ExtResource("1_qihaq")
+_velocityComponent = NodePath("VelocityComponent")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("3_amftn")]
+_maxSpeed = 140
+_acceleration = 70.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_2y6sm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7flh7")
