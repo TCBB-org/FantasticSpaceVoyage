@@ -1,24 +1,104 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk1qrbdqpsg6e"]
+[gd_scene load_steps=9 format=3 uid="uid://dk1qrbdqpsg6e"]
 
-[ext_resource type="Texture2D" uid="uid://s13531ow8230" path="res://icon.svg" id="1_2y6sm"]
 [ext_resource type="Script" path="res://Player/Player.cs" id="1_qihaq"]
 [ext_resource type="PackedScene" uid="uid://dtheldak1tuln" path="res://Component/VelocityComponent.tscn" id="3_amftn"]
+[ext_resource type="Texture2D" uid="uid://c6qm2q6ar0oa7" path="res://Assets/Tiny RPG Character Asset Pack/Soldier/Soldier/Soldier.png" id="3_koemk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7flh7"]
-size = Vector2(150, 150)
+[sub_resource type="Animation" id="Animation_ay5h5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_velocityComponent")]
+[sub_resource type="Animation" id="Animation_dd2n2"]
+resource_name = "Walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:frame_coords")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tcc56"]
+resource_name = "Idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jvwn7"]
+_data = {
+"Idle": SubResource("Animation_tcc56"),
+"RESET": SubResource("Animation_ay5h5"),
+"Walk": SubResource("Animation_dd2n2")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8wwbd"]
+radius = 5.0
+height = 18.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_velocityComponent") groups=["Player"]]
+position = Vector2(0, -7)
 motion_mode = 1
 script = ExtResource("1_qihaq")
 _velocityComponent = NodePath("VelocityComponent")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jvwn7")
+}
 
 [node name="VelocityComponent" parent="." instance=ExtResource("3_amftn")]
 _maxSpeed = 140
 _acceleration = 70.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_2y6sm")
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("3_koemk")
+hframes = 9
+vframes = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_7flh7")
+visible = false
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_8wwbd")
