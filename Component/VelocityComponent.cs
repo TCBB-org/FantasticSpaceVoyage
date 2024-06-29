@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace DSurvivorsCourse.Scenes.Component;
+namespace FantasticSpaceVoyage.Component;
 
 public partial class VelocityComponent : Node
 {
