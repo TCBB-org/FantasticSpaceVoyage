@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dk1qrbdqpsg6e"]
+[gd_scene load_steps=10 format=3 uid="uid://dk1qrbdqpsg6e"]
 
 [ext_resource type="Script" path="res://Player/Player.cs" id="1_qihaq"]
 [ext_resource type="PackedScene" uid="uid://dtheldak1tuln" path="res://Component/VelocityComponent.tscn" id="3_amftn"]
+[ext_resource type="PackedScene" uid="uid://b6pojmp6q1u71" path="res://Component/HealthComponent.tscn" id="3_h2foe"]
 [ext_resource type="Texture2D" uid="uid://c6qm2q6ar0oa7" path="res://Assets/Tiny RPG Character Asset Pack/Soldier/Soldier/Soldier.png" id="3_koemk"]
 
 [sub_resource type="Animation" id="Animation_ay5h5"]
@@ -90,6 +91,8 @@ libraries = {
 [node name="VelocityComponent" parent="." instance=ExtResource("3_amftn")]
 _maxSpeed = 140
 _acceleration = 70.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_h2foe")]
 
 [node name="Visuals" type="Node2D" parent="."]
 
