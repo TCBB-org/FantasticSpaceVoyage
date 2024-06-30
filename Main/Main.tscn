@@ -6,7 +6,11 @@
 [node name="Main" type="Node"]
 
 [node name="GameCamera" parent="." instance=ExtResource("1_4673x")]
-position = Vector2(256, 144)
+position = Vector2(320, 160)
 
-[node name="Player" parent="." instance=ExtResource("1_vmduj")]
-position = Vector2(256, 144)
+[node name="Entities" type="Node2D" parent="." groups=["EntitiesLayer"]]
+
+[node name="Player" parent="Entities" instance=ExtResource("1_vmduj")]
+position = Vector2(320, 160)
+
+[node name="Foreground" type="Node2D" parent="." groups=["ForegroundLayer"]]
