@@ -98,7 +98,7 @@ states/Start/position = Vector2(325, 191)
 states/Walk/node = SubResource("AnimationNodeAnimation_3j6qm")
 states/Walk/position = Vector2(845, 191)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_bv55w"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_ho7pn"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_7qtqo"), "Idle", "PrimaryAttack", SubResource("AnimationNodeStateMachineTransition_mnub1"), "PrimaryAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_ygogl"), "PrimaryAttack", "Walk", SubResource("AnimationNodeStateMachineTransition_yh3c7"), "Walk", "PrimaryAttack", SubResource("AnimationNodeStateMachineTransition_auqyl"), "PrimaryAttack", "SecondaryAttack", SubResource("AnimationNodeStateMachineTransition_865j0"), "SecondaryAttack", "PrimaryAttack", SubResource("AnimationNodeStateMachineTransition_77p2j"), "SecondaryAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_5gpnl"), "SecondaryAttack", "Walk", SubResource("AnimationNodeStateMachineTransition_nue22"), "Walk", "Roll", SubResource("AnimationNodeStateMachineTransition_e88aw"), "Roll", "Walk", SubResource("AnimationNodeStateMachineTransition_sh6mw"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_nomf6")]
-graph_offset = Vector2(150, 10)
+graph_offset = Vector2(150, -15.5077)
 
 [sub_resource type="Animation" id="Animation_tcc56"]
 resource_name = "Idle"
@@ -238,10 +238,10 @@ tracks/3/path = NodePath("VelocityComponent:_maxSpeed")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(2.37841, 0.812252),
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(2.37841, 0.812252, 1),
 "update": 1,
-"values": [140, 280]
+"values": [140, 280, 140]
 }
 
 [sub_resource type="Animation" id="Animation_flspm"]
@@ -330,9 +330,8 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qyeln"]
 size = Vector2(23, 25)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8wwbd"]
-radius = 5.0
-height = 18.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hev26"]
+size = Vector2(7, 3)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_velocityComponent") groups=["Player"]]
 position = Vector2(0, -7)
@@ -389,6 +388,5 @@ shape = SubResource("RectangleShape2D_qyeln")
 disabled = true
 
 [node name="TerrainCollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, -2)
-shape = SubResource("CapsuleShape2D_8wwbd")
+position = Vector2(0.5, 5.5)
+shape = SubResource("RectangleShape2D_hev26")
