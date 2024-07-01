@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsm7do1iydibn"]
+[gd_scene load_steps=4 format=3 uid="uid://dsm7do1iydibn"]
 
 [ext_resource type="PackedScene" uid="uid://b3d3rydv1ujqd" path="res://GameObject/GameCamera/GameCamera.tscn" id="1_4673x"]
+[ext_resource type="PackedScene" uid="uid://dsjc8wu8j1l31" path="res://Ui/AbilitySlotsUi.tscn" id="1_af2ah"]
 [ext_resource type="PackedScene" uid="uid://dk1qrbdqpsg6e" path="res://Player/Player.tscn" id="1_vmduj"]
 
 [node name="Main" type="Node"]
 
+[node name="AbilitySlotsUI" parent="." instance=ExtResource("1_af2ah")]
+
 [node name="GameCamera" parent="." instance=ExtResource("1_4673x")]
-position = Vector2(320, 160)
 
 [node name="Entities" type="Node2D" parent="." groups=["EntitiesLayer"]]
 
